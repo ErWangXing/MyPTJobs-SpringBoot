@@ -1,0 +1,675 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.MyPTJobs.Controllor.EmployerController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_858572474 { 
+   	label=MyPTJobs
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_127581850 { 
+   	label=Controllor
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   EmployerController150600365[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EmployerController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   complaintService: ComplaintService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   context: ApplicationContext [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerRepository: EmployerRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerService: EmployerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobApplicationService: JobApplicationService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobInterviewService: JobInterviewService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobOfferService: JobOfferService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerService: JobSeekerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobService: JobService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mailSender: JavaMailSender [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ratingService: RatingService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uploadDir: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addNewJob(job: Job, file: Optional&lt;MultipartFile&gt;, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(token: String, oldPassword: String, newPassword: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(email: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(token: String, newPassword: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkCompleteness(token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkLogin(token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkVerificationCode(email: String, code: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ completeJobAndRate(applicationID: int, rate: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteOffer(jobSeekerID: int, jobID: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRecommendation(jobID: int): ResponseEntity&lt;List&lt;JobSeeker&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getbasicinfo(token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ homeDetail(token: String): ResponseEntity&lt;Map&lt;String, String&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ login(employer: Employer): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makeJobSeekerComplaint(id: int, reason: String, other: String, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removePostedJob(JobID: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestAppliedJobList(token: String): ResponseEntity&lt;List&lt;JobApplication&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestCompanyDescription(token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestCompanyInformation(token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestInformation(token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestInterviewList(token: String): ResponseEntity&lt;List&lt;JobInterview&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestJobSeekerRatingList(id: int): ResponseEntity&lt;List&lt;Rating&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestOfferList(token: String): ResponseEntity&lt;List&lt;JobOffer&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestOperatingHours(token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestPostedJob(token: String): ResponseEntity&lt;List&lt;Job&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestRatingList(token: String): ResponseEntity&lt;List&lt;Rating&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestSelectedPostedJob(id: int): ResponseEntity&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendInterview(jobInterview: JobInterview): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendOffer(jobOffer: JobOffer): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serveFile(folder: String, filename: String): ResponseEntity&lt;Resource&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serveFile(filename: String): ResponseEntity&lt;Resource&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ signUp(employer: Employer): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ submitVerificationDocument(emp: Employer, frontIC: Optional&lt;MultipartFile&gt;, SSMImage: Optional&lt;MultipartFile&gt;, selfie: Optional&lt;MultipartFile&gt;, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ test(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateApplicationStatus(applicationID: int, status: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompanyDescription(emp: Employer): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateInformation(emp: Employer, file: Optional&lt;MultipartFile&gt;, token: String): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateInterviewStatus(interviewID: int, status: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateOperatingHours(operatingHours: String, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updatePostedJob(job: Job, file: Optional&lt;MultipartFile&gt;, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ viewEmployer(id: int): ResponseEntity&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ viewJobDetail(value: int): ResponseEntity&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ viewJobSeeker(jobSeekerID: int): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobSeekerController150600365[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobSeekerController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   EmployerController: EmployerController [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   FavouriteJobService: FavouriteJobService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   JobApplicationService: JobApplicationService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   complaintService: ComplaintService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerService: EmployerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   entityManager: EntityManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobApplicationService: JobApplicationService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobInterviewService: JobInterviewService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobOfferService: JobOfferService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerRepository: JobSeekerRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerService: JobSeekerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobService: JobService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   langService: LanguageService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ratingService: RatingService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   skillService: SkillService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uploadDir: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   workExperienceService: WorkExperienceService [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addApplication(token: String, jobID: int, selectedDate: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addFavouriteJob(token: String, jobID: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(token: String, oldPassword: String, newPassword: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(email: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changePassword(token: String, newPassword: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkLogin(token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkVerificationCode(email: String, code: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ completeJobAndRate(applicationID: int, rate: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteApplication(token: String, jobID: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteFavouriteJob(token: String, jobID: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getBasicInfo(token: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCurrentArea(token: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLanguage(id: int): ResponseEntity&lt;Language&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSkill(id: int): ResponseEntity&lt;Skill&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getWorkExperience(id: int): ResponseEntity&lt;WorkExperience&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ googleSignUp(jobSeeker: JobSeeker, image: Optional&lt;String&gt;): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ login(jobSeeker: JobSeeker): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makeEmployerComplaint(id: int, reason: String, other: String, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makeJobComplaint(id: int, reason: String, other: String, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processInterview(interviewID: int, status: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processOffer(offerID: int, status: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeLanguage(id: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeSkill(id: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeWorkExperience(id: int): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestAppliedJobList(token: String): ResponseEntity&lt;List&lt;JobApplication&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestEmployerRatingList(id: int): ResponseEntity&lt;List&lt;Rating&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestFavouriteJobList(token: String): ResponseEntity&lt;List&lt;Job&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestInterviewJobList(token: String): ResponseEntity&lt;List&lt;JobInterview&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestJob(value: int, token: String): ResponseEntity&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestJobList(value: Optional&lt;String&gt;, isFilter: Optional&lt;Boolean&gt;, jobType: Optional&lt;String&gt;, jobLocation: Optional&lt;String&gt;, distance: Optional&lt;Double&gt;, salaryPerHours: Optional&lt;Double&gt;, startTime: Optional&lt;String&gt;, endTime: Optional&lt;String&gt;, selectedDate: Optional&lt;String&gt;, currentLatitude: Optional&lt;String&gt;, currentLongitude: Optional&lt;String&gt;, limitResult: Optional&lt;Integer&gt;, orderBY: Optional&lt;String&gt;, rand: Optional&lt;Boolean&gt;): ResponseEntity&lt;List&lt;Job&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestJobSetting(token: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestListOfLanguage(token: String): ResponseEntity&lt;List&lt;Language&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestListOfSkill(token: String): ResponseEntity&lt;List&lt;Skill&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestListOfWorkExperience(token: String): ResponseEntity&lt;List&lt;WorkExperience&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestOfferJobList(token: String): ResponseEntity&lt;List&lt;JobOffer&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestPersonalInformation(token: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestRatingList(token: String): ResponseEntity&lt;List&lt;Rating&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ retrieveBiodata(token: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serveFile(folder: String, filename: String): ResponseEntity&lt;Resource&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serveFile(filename: String): ResponseEntity&lt;Resource&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ signUp(jobSeeker: JobSeeker): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ submitVerificationDocument(js: JobSeeker, frontIC: Optional&lt;MultipartFile&gt;, selfie: Optional&lt;MultipartFile&gt;, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ test(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddLanguage(workExperience: Language, mode: String, token: String, languageName: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddSkill(workExperience: Skill, mode: String, token: String, skillName: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddWorkingExperience(workExperience: WorkExperience, mode: String, token: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCurrentArea(token: String, currentState: String, currentCity: String): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateJobSetting(token: String, jobSetting: String): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateJobSetting(token: String, jobSeeker: JobSeeker): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ uploadImage(jobSeeker: JobSeeker, file: Optional&lt;MultipartFile&gt;): ResponseEntity&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ viewEmployer(id: int): ResponseEntity&lt;Employer&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1357229392 { 
+   	label=Class
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AESUtil575367491[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AESUtil</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   adminKey: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   algorithm: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerKey: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ivKey: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerKey: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   secretKey: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ decrypt(algorithm: String, cipherText: String, key: SecretKey, iv: IvParameterSpec): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ decryptFile(algorithm: String, key: SecretKey, iv: IvParameterSpec, encryptedFile: File, decryptedFile: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ decryptObject(algorithm: String, sealedObject: SealedObject, key: SecretKey, iv: IvParameterSpec): Serializable</TD></TR>
+<TR><TD ALIGN="LEFT" >+ decryptPasswordBased(cipherText: String, key: SecretKey, iv: IvParameterSpec): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dencryptAES(cipherText: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ encrypt(algorithm: String, input: String, key: SecretKey, iv: IvParameterSpec): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ encryptAES(str: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ encryptFile(algorithm: String, key: SecretKey, iv: IvParameterSpec, inputFile: File, outputFile: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ encryptObject(algorithm: String, object: Serializable, key: SecretKey, iv: IvParameterSpec): SealedObject</TD></TR>
+<TR><TD ALIGN="LEFT" >+ encryptPasswordBased(plainText: String, key: SecretKey, iv: IvParameterSpec): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateIv(): IvParameterSpec</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateKey(n: int): SecretKey</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getKeyFromPassword(password: String, salt: String): SecretKey</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Employer575367491[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Employer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   IC: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   SSMImage: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   blockDate: Timestamp [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   blockPermanent: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   city: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   companyDescription: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   companyEmail: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   companyName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   created_at: Timestamp [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerID: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frontICImage: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gender: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   imageFile: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   location: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   operatingHours: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   phoneNumber: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rating: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   selfieImage: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ssm: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   state: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   token: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   verification: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   verificationCode: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   verificationDate: Timestamp [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ generateToken()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FileStorageService575367491[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FileStorageService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   fileStorageLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ loadFileAsResource(fileName: String): Resource</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveFileFromURL(url: String, newFilename: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ storeFile(file: MultipartFile, newFilename: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_288177190 { 
+   	label=Services
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ComplaintService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ComplaintService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   employerService: EmployerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerService: JobSeekerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobService: JobService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   respository: ComplaintRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ countComplaints(complaints: List&lt;Complaint&gt;): Map&lt;String, Integer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateComplaintList(countMap: Map&lt;String, Integer&gt;): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComplaintDetail(id: int): Complaint</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComplaintsByIDandType(id: int, type: String): List&lt;Complaint&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getManyCompaints(ids: List&lt;Integer&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPreviousAction(complaint: Complaint): List&lt;Complaint&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processComplaint(ids: List&lt;Integer&gt;, status: String, action: String, type: String, num: int, typeOfPeriod: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ recordComplaint(id: int, type: String, reason: String, otherReason: String, reporterID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ save(newComplaint: Complaint): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateComplaintStatus(ids: List&lt;Integer&gt;, status: String, action: String, grouping: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EmployerService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EmployerService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   context: ApplicationContext [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   employerRepository: EmployerRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   entityManager: EntityManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobApplicationService: JobApplicationService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobInterviewService: JobInterviewService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobSeekerService: JobSeekerService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobService: JobService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mailSender: JavaMailSender [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   ratingService: RatingService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uploadDir: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkBlockOrNot(employer: Employer): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkByToken(token: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkCompleteInformationOrNot(employer: Employer): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkVerification(employer: Employer): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deactive(employer: Employer, blockDate: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyInformationByID(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerById(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerByJob(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerCompanyDescriptionByID(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerList(filter: String): List&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerOperatingHoursByID(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getKYBVerficationInformation(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestEmployerInformation(id: int): Employer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestKYBList(filter: String): List&lt;Employer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendBlockedEmail(employer: Employer, title: String, formattedDateTime: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendDeletedJob(employer: Employer, title: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendVerificationEmail(employer: Employer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendWarning(employer: Employer, title: String, contentDetail: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompanyBackground(emp: Employer, file: Optional&lt;MultipartFile&gt;, employerID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompanyInformation(description: String, employerID: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateKYBVerification(id: int, status: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateOperatingHours(operatingHours: String, employerID: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobApplicationService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobApplicationService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   respository: JobApplicationRespository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addApplication(id: int, jobID: int, selectedDate: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkApplication(token: String, jobID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkExistingApplication(applicationID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteApplication(id: int, jobID: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerAppliedJob(value: int, page: int, limit: int): List&lt;JobApplication&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getExistingApplication(applicationID: int): Optional&lt;JobApplication&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getJobSeekerAppliedJob(value: int, page: int, limit: int): List&lt;JobApplication&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumberCompletedJobApplication(value: int, page: int, limit: int, statuses: List&lt;String&gt;): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumberEmployerAppliedJob(value: int, page: int, limit: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveNew(newApplication: JobApplication)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateApplicationStatus(id: int, status: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobInterviewService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobInterviewService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   jobApplicationService: JobApplicationService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   respository: JobInterviewRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addInterview(jobInterview: JobInterview): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkExisting(applicationID: int): Optional&lt;JobInterview&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkExistingInterview(applicationID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteInterview(interviewID: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerInterview(value: int, page: int, limit: int): List&lt;JobInterview&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getJobSeekerInterview(value: int, page: int, limit: int): List&lt;JobInterview&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumberEmployerInterview(value: int, page: int, limit: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEmployerInterviewStatus(id: int, status: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateInterviewStatus(id: int, status: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobOfferService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobOfferService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   respository: JobOfferRespository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addOffer(newOffer: JobOffer): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkExistingOffer(offerID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkExistingOfferByJobIDAndJobSeeker(jobSeekerID: int, jobID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkOffer(token: String, jobID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteOffer(id: int, jobID: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmployerOffer(value: int, page: int, limit: int): List&lt;JobOffer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getExistingOffer(offerID: int): Optional&lt;JobOffer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getJobSeekerOffer(value: int, page: int, limit: int): List&lt;JobOffer&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumberEmployerOffer(value: int, page: int, limit: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateOfferStatus(id: int, status: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobSeekerService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobSeekerService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   complaintService: ComplaintService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   entityManager: EntityManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   langService: LanguageService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mailSender: JavaMailSender [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   respository: JobSeekerRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   skillService: SkillService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   workExperienceService: WorkExperienceService [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkBlockOrNot(jobSeeker: JobSeeker): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkByToken(token: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkCompleteInformationOrNot(jobSeeker: JobSeeker): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkVerification(jobSeeker: JobSeeker): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deactive(jobSeeker: JobSeeker, blockDate: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getJobSeekerByID(jobSeekerID: int): JobSeeker</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getKYCVerficationInformation(id: int): JobSeeker</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPersonalInformation(jobSeekerID: int): Optional&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRecommendationList(job: Job): List&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ requestKYCList(filter: String): List&lt;JobSeeker&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendBlockedEmail(jobSeeker: JobSeeker, title: String, formattedDateTime: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendVerificationEmail(jobSeeker: JobSeeker)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendWarning(jobSeeker: JobSeeker, title: String, contentDetail: String, type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateKYCVerification(id: int, status: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JobService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JobService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   jobApplicationRespository: JobApplicationRespository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jobRepository: JobRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uploadDir: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addJob(job: Job, file: Optional&lt;MultipartFile&gt;): ResponseEntity&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteJob(id: int): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllJobList(value: String, page: int, limit: int): List&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getFavouriteJob(value: int, page: int, limit: int): List&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getJobList(token: String): List&lt;Job&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumberJob(token: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSelectedJob(id: int): Job</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateJob(job: Job, file: Optional&lt;MultipartFile&gt;): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LanguageService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LanguageService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   langRepo: LanguageRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getLanguage(id: int): Language</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getListofLanguage(jobSeeker: JobSeeker): List&lt;Language&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeLanguage(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddLanguage(skill: Language, mode: String): ResponseEntity&lt;String&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RatingService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RatingService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   respository: RatingRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calcJobSeekerAverageRating(jobSeekerID: int): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ calcTotalEmployerAverageRating()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ calcTotalJobSeekerAverageRating()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRatingList(id: int, type: String): List&lt;Rating&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ save(newRate: Rating)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SkillService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SkillService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   skillRepo: SkillRepository [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getListofSkill(jobSeeker: JobSeeker): List&lt;Skill&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSkill(id: int): Skill</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeSkill(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddSkill(skill: Skill, mode: String): ResponseEntity&lt;String&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+WorkExperienceService1128423673[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)WorkExperienceService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   rootLocation: Path [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   workExperienceRepo: WorkExperienceRepository [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getListofWorkingExperience(jobSeeker: JobSeeker): List&lt;WorkExperience&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getWorkingExperience(id: int): WorkExperience</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeWorkExperience(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAddWorkingExperience(workExperience: WorkExperience, mode: String): ResponseEntity&lt;String&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+ComplaintService1128423673 -> EmployerService1128423673[label="employerService
+[1]"];
+ComplaintService1128423673 -> JobSeekerService1128423673[label="jobSeekerService
+[1]"];
+ComplaintService1128423673 -> JobService1128423673[label="jobService
+[1]"];
+Employer575367491 -> AESUtil575367491[label="generateToken() -> encryptAES()"];
+EmployerController150600365 -> ComplaintService1128423673[label="complaintService
+[1]"];
+EmployerController150600365 -> EmployerService1128423673[label="employerService
+[1]"];
+EmployerController150600365 -> JobApplicationService1128423673[label="jobApplicationService
+[1]"];
+EmployerController150600365 -> JobInterviewService1128423673[label="jobInterviewService
+[1]"];
+EmployerController150600365 -> JobOfferService1128423673[label="jobOfferService
+[1]"];
+EmployerController150600365 -> JobSeekerService1128423673[label="jobSeekerService
+[1]"];
+EmployerController150600365 -> JobService1128423673[label="jobService
+[1]"];
+EmployerController150600365 -> RatingService1128423673[label="ratingService
+[1]"];
+EmployerService1128423673 -> FileStorageService575367491[label="updateCompanyBackground() -> storeFile()"];
+EmployerService1128423673 -> JobApplicationService1128423673[label="jobApplicationService
+[1]"];
+EmployerService1128423673 -> JobInterviewService1128423673[label="jobInterviewService
+[1]"];
+EmployerService1128423673 -> JobSeekerService1128423673[label="jobSeekerService
+[1]"];
+EmployerService1128423673 -> JobService1128423673[label="jobService
+[1]"];
+EmployerService1128423673 -> RatingService1128423673[label="ratingService
+[1]"];
+JobInterviewService1128423673 -> JobApplicationService1128423673[label="jobApplicationService
+[1]"];
+JobSeekerController150600365 -> EmployerController150600365[label="EmployerController
+[1]"];
+JobSeekerService1128423673 -> ComplaintService1128423673[label="complaintService
+[1]"];
+JobSeekerService1128423673 -> LanguageService1128423673[label="langService
+[1]"];
+JobSeekerService1128423673 -> SkillService1128423673[label="skillService
+[1]"];
+JobSeekerService1128423673 -> WorkExperienceService1128423673[label="workExperienceService
+[1]"];
+    
+}
+@enduml
